@@ -674,6 +674,7 @@ SyncModuleWorker.prototype._syncOneVersion = function *(versionIndex, sourcePack
     writeStream: ws,
     followRedirect: true,
     timeout: 600000, // 10 minutes download
+    gzip: true,
     headers: {
       'user-agent': USER_AGENT
     }

@@ -187,3 +187,17 @@ CREATE TABLE `dist_file` (
  UNIQUE KEY `fullname` (`parent`, `name`),
  KEY `gmt_modified` (`gmt_modified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='dist file info';
+
+CREATE TABLE `task` (
+ `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+ `gmt_create` datetime NOT NULL COMMENT 'create time',
+ `gmt_modified` datetime NOT NULL COMMENT 'modified time',
+ `worker` varchar(100) NOT NULL COMMENT 'worker name',
+ `status` int(10) unsigned NOT NULL COMMENT 'task status, 0:init, 1:doing, 2:done' DEFAULT '0',
+ `json` longtext CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT 'task details',
+ `progress` int(10) unsigned NOT NULL COMMENT 'task progress' DEFAULT '0',
+ `error` longtext,
+ PRIMARY KEY (`id`),
+ KEY `status` (`status`),
+ KEY `gmt_modified` (`gmt_modified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='task';
